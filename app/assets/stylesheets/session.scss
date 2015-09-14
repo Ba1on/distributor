@@ -1,0 +1,56 @@
+// Place all the styles related to the session controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.auto_form{
+	background: #D9D9D9;
+  max-width: 500px;
+  max-height:700px;
+  margin: auto;
+
+  position: absolute;
+  left:0;
+  right: 0;
+  top:0;
+  bottom:0;
+
+  border-radius: 30px;
+  padding: 30px;
+  border: 1px ridge #D9D9D9;
+  box-shadow: inset 10px 10px 10px #CBCBCB;
+}
+
+.face{
+	height: 170px;
+	width: 170px;
+	border-radius: 50%;
+	background: gray;
+	border:2px groove gray;
+	margin:30px auto;
+}
+
+.user_name, .user_pass{
+  margin: 20px;
+  font-size: 20px;
+  font-family: cursive;
+}
+
+.login_button{  
+  width:10px;
+  margin: auto;
+}
+
+.pin_input{
+  width:100%; 
+  padding: 5px;
+}
+
+#notice1{
+  text-align: center;
+  margin:10px auto;
+  max-width:500px;
+  line-height:50px;
+  background: #D9D9D9;
+  color:red;
+  border-radius: 10px;
+  border:1px groove #CBCBCB; 
+}
