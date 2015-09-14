@@ -1,0 +1,23 @@
+= form_for(@sprint) do |f|
+  - if @sprint.errors.any?
+    #error_explanation
+      h2 id="err"
+        = pluralize(@sprint.errors.count, "error")
+      ul
+        -@sprint.errors.full_messages.each do |message|
+          li = message
+
+  table class="sprints_list"
+    tr
+      td = f.label :name
+      td = f.text_field :name, class: "text_field"
+    tr
+      td = f.label :state
+      td
+        =' f.check_box :state, {}, "true", "false"
+        = t('opened')
+    tr
+      td = f.label :adding_clients
+      td = f.select :client_ids, options_from_collection_for_select(@clients, 'id', 'name', @collect_selected), {}, multiple: true
+  .actions
+    = f.submit

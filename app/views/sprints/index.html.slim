@@ -1,0 +1,30 @@
+p class="sprints_title" = t('sprints')
+
+table class="sprints_list"
+  - @sprints.each do |sprint|
+      tr
+        td class="list_description"
+          dl
+            dt = sprint.name
+        td class="list_actions"
+          = link_to t(:show), sprint
+          br
+          = link_to t(:edit), edit_sprint_path(sprint)
+          br
+          = link_to t(:destroy), sprint, method: :delete, data: { confirm: 'Are you sure?' }
+        td class="list_clients"
+          - sprint.clients.each do |client|
+            = client.name
+            br
+        td
+          = sprint.state
+        td class="total_time"
+          = sprint.clients.size*40
+
+br
+
+- unless @sprints.exists?(state: true)
+  .sprint_link
+    = link_to t(:new_sprint), new_sprint_path
+.edit_spint
+  = link_to t(:go_to_issues), issues_path

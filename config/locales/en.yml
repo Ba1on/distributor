@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+ auth: "Please login"
+
+ session:
+  create:
+   incorrect_user_name_or_pass: "Incorrect Username or Password"
+  destroy:
+   session_completed: "Session completed"
+
+ sprint:
+  set_sprint:
+   sprint_not_found: "Spint not found"
+
+ open_sprint_exist: "Open sprint exist"

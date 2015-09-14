@@ -1,0 +1,19 @@
+p id="notice" = notice
+
+.sprints_list
+  p class="show"
+    strong' = t('name:')
+    = @sprint.name
+  p class="sprint_show show"
+    strong' = t('state:')
+    = @sprint.state
+  p class="sprint_show show"
+    strong' = t('clients:')
+    - @sprint.clients.each do |client|
+      = client.name
+      br
+
+.sprint_link
+  = link_to t(:edit), edit_sprint_path(@sprint)
+.sprint_link
+  = link_to t(:back), sprints_path
