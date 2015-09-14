@@ -4,7 +4,7 @@ class IssuesController < ApplicationController
   # на человека по 40 часов в неделю!
   def index
     @issues = Issue.all
-    @users = User.all
+    @clients = Client.all
 
   end
 
