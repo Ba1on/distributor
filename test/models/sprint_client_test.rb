@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SprintUserTest < ActiveSupport::TestCase
+class SprintClientTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
