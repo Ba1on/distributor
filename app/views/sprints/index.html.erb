@@ -1,0 +1,35 @@
+<p class="sprints_title">Sprints</p>
+
+<table class="sprints_list">
+  <% @sprints.each do |sprint| %>
+      <tr>
+                 
+        <td class="list_description">
+          <dl>
+            <dt><%= sprint.name %></dt>
+          </dl>
+        </td>
+
+        <td class="list_actions">
+          <%= link_to 'Show', sprint %><br>
+          <%= link_to 'Edit', edit_sprint_path(sprint) %><br>
+          <%= link_to 'Destroy', sprint, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+
+        <td class="list_clients">
+          <% sprint.clients.each do |client| %>
+            <%= client.name %>
+            <br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<div class="sprint_link">
+  <%= link_to 'New Sprint', new_sprint_path %>
+</div>

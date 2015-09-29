@@ -1,75 +1,39 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
-  # на человека по 40 часов в неделю!
+  # на человека по 40 часов в неделю
   def index
     @issues = Issue.all
-    @clients = Client.all
+        
+    unless params[:client] == nil
+      @total_time = params[:client].size*40
+    else 
+      @total_time = 0
+    end
+ 
+    @current_sprint = current_sprint.id
 
+    #@clients = Client.where.not(id: params[:client])
+    @clients = Client.select{|client| log.exclude?(client[:id])}
+    #Rails.logger.info "=============================== #{log}"
+    Sprint.find(session[:sprint_id]).clients << Client.find(params[:client])
+    flash[:notice] = 'Event was saved.'
   end
 
-  # GET /issues/1
-  # GET /issues/1.json
-  def show
-  end
-
-  # GET /issues/new
-  def new
-    @issue = Issue.new
-  end
-
-  # GET /issues/1/edit
-  def edit
-  end
-
-  # POST /issues
-  # POST /issues.json
   def create
-    @issue = Issue.new(issue_params)
-
-    respond_to do |format|
-      if @issue.save
-        format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
-        format.json { render :show, status: :created, location: @issue }
-      else
-        format.html { render :new }
-        format.json { render json: @issue.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /issues/1
-  # PATCH/PUT /issues/1.json
-  def update
-    respond_to do |format|
-      if @issue.update(issue_params)
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
-        format.json { render :show, status: :ok, location: @issue }
-      else
-        format.html { render :edit }
-        format.json { render json: @issue.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /issues/1
-  # DELETE /issues/1.json
-  def destroy
-    @issue.destroy
-    respond_to do |format|
-      format.html { redirect_to issues_url, notice: 'Issue was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  end 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_issue
-      @issue = Issue.find(params[:id])
-    end
+  def all_clients
+    Client.all.map{|repos| repos[:id]}
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def issue_params
-      params.require(:issue).permit(:estimated_hours, :hours, :status, :subject, :sprint_id)
-    end
+  def adding_client
+    params[:client].map{ |i| i.to_i }
+  end
+
+  def log
+    SprintClient.all.map{|repos| repos[:client_id]}
+  end
+
 end

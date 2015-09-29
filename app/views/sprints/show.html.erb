@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="sprints_list">
+<p class="show">
+  <strong>Name:</strong>
+  <%= @sprint.name %>
+</p>
+
+<p class="sprint_show show">
+  <strong>State:</strong>
+  <%= @sprint.state %>
+</p>
+
+<p class="sprint_show show"> 
+  <strong>Clients:</strong>
+	<% @sprint.clients.each do |client|%>
+	<%= client.name %>
+	<br>
+	<% end %> 
+</p>
+</div>
+
+<div class="sprint_link">
+	<%= link_to 'Edit', edit_sprint_path(@sprint) %>
+</div>
+<div class="sprint_link">
+	<%= link_to 'Back', sprints_path %>
+</div>

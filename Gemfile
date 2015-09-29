@@ -9,7 +9,7 @@ gem "mysql2", "~> 0.3.11"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '2.7.2'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 gem 'coffee-script', '~> 2.4.1'
@@ -48,3 +48,4 @@ end
 
 gem 'bcrypt-ruby', '3.1.2'
 gem 'will_paginate', '~> 3.0'
+gem 'jquery-ui-rails'

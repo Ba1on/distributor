@@ -4,7 +4,7 @@
 	<div class="col-xs-6">
 		<div class="issues">
 			<% @issues.each do |issue| %>
-			<div class="one_issue">
+			<div class="one_issue" draggable="true">
 				<p>Issue # <%= issue.id %></p>
 				<p>Estimated hours: <%= issue.estimated_hours %></p>
 				<p>Hours: <%= issue.hours %></p>
@@ -15,14 +15,49 @@
 		</div>	
 	</div>
 
+
 	<div class="col-xs-6">
-		<div class="sprint">
-			<p>Sprint for:</p>
-			<%= select_tag 'user_id', options_for_select(@clients.collect{ |u| [u.name, u.id] }) %>
+		<div class="clients">
+			<%= form_tag(issues_path) do %>
+				<% @clients.each do |client| %>
+				<div class="one_client" draggable="true">
+					<%= check_box_tag 'client[]', client.id %>
+					<%= client.name %>
+				</div>
+			<% end %>	
+			<%= submit_tag "Add clients" %>	
+			<% end %>
 		</div>
+
+		<div class="sprint">
+			<p>Sprint week#<%= @current_sprint %> for:</p>
+			<p>Total time: <%= @total_time %></p>
+			
+			<%= submit_tag 'Add sprint' %>				
+			
+		</div>
+	</div>
+
+	<div class="logout">
+		<% if session[:user_id] %>
+		<%= button_to 'Logout', logout_path, method: :delete %>
+		<% end %>
 	</div>
 </div>
 
-<% if session[:user_id] %>
-<%= button_to 'Logout', logout_path, method: :delete %>
-<% end %>
+<a href="#" onclick="paintIt(this, 'red', 'black')">Paint it red</a>
+<br>
+
+<script type="text/javascript">
+$('.one_issue, .one_client').draggable({
+    helper:"clone",
+    containment:"document"
+}
+	);
+
+$('.issues, .sprint').droppable({
+    drop:function(event, ui) {
+        ui.draggable.appendTo($(this));
+    }
+});
+</script>

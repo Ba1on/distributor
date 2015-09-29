@@ -1,0 +1,90 @@
+// Place all the styles related to the sprints controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//index
+*{
+	font-family: serif;
+	font-size:16px;
+}
+
+body{
+	background:#CFCFCF;
+}
+
+.header, .footer{
+	background-color: black;
+	height: 25px;
+	width: 100%;
+}
+
+.footer{
+	position: absolute;
+  bottom: 0;
+}
+
+.sprints_list{
+	background:#FFFFE0;
+	border-radius: 20px;
+}
+
+table{
+	width: 100%;	
+}
+
+table tr:first-child{
+	border:none;	
+}
+
+table td{
+	padding: 20px;
+}
+
+table td:first-child{
+	width: 20%;
+}
+
+.sprint_show, table tr{
+	border-top: 1px solid #B8860B;
+}
+
+.sprints_title{
+	font-family: serif;
+	font-size: 5em;
+	margin:3%;
+}
+
+.sprint_link{
+	background-color: #FFFFE0;
+	border-radius:7px;
+	padding: 5px;
+	text-align: center;
+	margin: 3px;
+}
+
+.show{
+	padding: 10px;
+	margin: 10px;
+	font-size: 16px;
+}
+
+select, .text_field{
+	border: none;
+	font-size: 20px;
+	font-family: serif;
+	width: 30%;
+}
+
+input[type="submit"]
+{
+	margin: 5px;
+	padding: 5px;
+	background-color: #FFFFE0;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #B8860B; 
+	border: 1px outset #B8860B;
+}
+
+.list_clients{
+	font-size: 16px;
+	font-family: serif;
+}

@@ -1,0 +1,46 @@
+<%= form_for(@sprint) do |f| %>
+  <% if @sprint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sprint.errors.count, "error") %> prohibited this sprint from being saved:</h2>
+
+      <ul>
+      <% @sprint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<table class="sprints_list">
+  <tr>
+    <td>
+      <%= f.label :name %>
+    </td>    
+    <td>
+      <%= f.text_field :name, class: "text_field"%>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.label :state %> 
+    </td>
+    <td>  
+      <%= f.check_box :state, {}, "true", "false"%> 
+    </td>   
+  </tr>
+  <tr>
+    <td>
+      <%= f.label :clients %>
+    </td>
+    <td>
+      <%= f.select :clients, options_from_collection_for_select(@clients, 'id', 'name'), {} ,:multiple => true %>
+    </td>
+  </tr>
+</table> 
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>  
+<% end %>
