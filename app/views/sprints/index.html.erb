@@ -1,9 +1,9 @@
-<h1>Listing Products</h1>
+<p class="sprints_title">Sprints</p>
 
-<table>
+<table class="sprints_list">
   <% @sprints.each do |sprint| %>
-      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-               
+      <tr>
+                 
         <td class="list_description">
           <dl>
             <dt><%= sprint.name %></dt>
@@ -13,7 +13,15 @@
         <td class="list_actions">
           <%= link_to 'Show', sprint %><br>
           <%= link_to 'Edit', edit_sprint_path(sprint) %><br>
-          <%= link_to 'Destroy', sprint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%= link_to 'Destroy', sprint, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+
+        <td class="list_clients">
+          <% sprint.clients.each do |client| %>
+            <%= client.name %>
+            <br>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +30,6 @@
 
 <br>
 
-<%= link_to 'New Sprint', new_sprint_path %>
+<div class="sprint_link">
+  <%= link_to 'New Sprint', new_sprint_path %>
+</div>
