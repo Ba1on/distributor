@@ -10,4 +10,8 @@ class Sprint < ActiveRecord::Base
     errors.add(:sprint_id, I18n.t(:open_sprint_exist)) if opened && (id != opened.id)
   end
 
+  def clients_work_hours
+    clients.count * 40
+  end
+
 end
