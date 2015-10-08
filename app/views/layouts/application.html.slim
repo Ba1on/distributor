@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Distributor
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .header
+    div class="container" id="wrapper"
+      = yield
+      .logout
+        - if session[:user_id]
+          = button_to :Logout, logout_path, method: :delete
+    footer class="footer"

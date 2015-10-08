@@ -1,0 +1,17 @@
+- if flash[:alert]
+  p id="notice1"
+    = flash[:alert]
+
+= form_tag do
+  fieldset
+    .auto_form
+      .user_name
+        = label_tag :name, t(:name)
+        br
+        = text_field_tag :name, params[:name], class: "pin_input"
+      .user_pass
+        = label_tag :password, t(:password)
+        br
+        = password_field_tag :password, params[:password], class: "pin_input"
+      .login_button
+        = button_tag :Login

@@ -1,0 +1,8 @@
+p class="sprints_title" = t('editing_sprint')
+
+= render 'form'
+
+.sprint_link
+  = link_to t(:show), @sprint
+.sprint_link
+  = link_to t(:back), sprints_path

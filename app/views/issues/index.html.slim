@@ -1,0 +1,36 @@
+p id="notice"
+  = notice
+
+p class="sprints_title"
+  = t('issues')
+
+.col-xs-6
+  .issues_c
+    - @issues.each do |issue|
+      div class="one_issue" draggable="true"
+        p
+          =' t('issue_#')
+          = issue.id
+        p
+          =' t('estimated_hours:')
+          = issue.estimated_hours
+        p
+          =' t('hours:')
+          = issue.hours
+        p
+          =' t('status:')
+          = issue.status
+        p
+          =' t('subject:')
+          = issue.subject
+
+.col-xs-6
+  .issues_c
+    p
+     =' t('sprint_name:')
+     = @sprint.name
+    - @sprint.clients.each do |client|
+      = client.name
+      br
+  .edit_spint
+    = link_to t(:edit_sprints), sprints_path
