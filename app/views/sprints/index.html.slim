@@ -9,7 +9,8 @@ table class="sprints_list"
         td class="list_actions"
           = link_to t(:show), sprint
           br
-          = link_to t(:edit), edit_sprint_path(sprint)
+          - if sprint.state
+            = link_to t(:edit), edit_sprint_path(sprint)
           br
           = link_to t(:destroy), sprint, method: :delete, data: { confirm: 'Are you sure?' }
         td class="list_clients"
@@ -17,9 +18,9 @@ table class="sprints_list"
             = client.name
             br
         td
-          = sprint.state
+          = opened_or_closed(sprint.state)
         td class="total_time"
-          = sprint.clients_work_hours
+          = sprint.work_hours
 
 br
 

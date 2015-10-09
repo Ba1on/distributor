@@ -13,12 +13,18 @@ class SprintsController < ApplicationController
 
   def create
     @sprint = Sprint.new(sprint_params)
-    return redirect_to sprints_url if @sprint.save
+    if @sprint.save
+      clients_work_hours
+      return redirect_to sprints_url
+    end
     render :new
   end
 
   def update
-    return redirect_to @sprint if @sprint.update(sprint_params)
+    if @sprint.update(sprint_params)
+      clients_work_hours
+      return redirect_to @sprint
+    end
     render :edit
   end
 
@@ -35,7 +41,7 @@ class SprintsController < ApplicationController
   end
 
   def sprint_params
-   params.require(:sprint).permit(:name, :state, client_ids:[])
+   params.require(:sprint).permit(:name, :state, :work_hours, client_ids:[])
   end
 
   def collect_selected_clients
@@ -44,5 +50,9 @@ class SprintsController < ApplicationController
 
   def all_clients
     @clients = Client.all
+  end
+
+  def clients_work_hours
+    @sprint.update_attributes(work_hours: @sprint.clients.count * 40)
   end
 end
