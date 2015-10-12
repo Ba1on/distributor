@@ -1,9 +1,9 @@
 module SprintsHelper
   def opened_or_closed(state)
     if state
-      "Opened"
+      t(:opened)
     else
-      "Closed"
+      t(:closed)
     end
   end
 end
