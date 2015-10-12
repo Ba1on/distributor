@@ -6,14 +6,18 @@ p id="notice" = notice
     = @sprint.name
   p class="sprint_show show"
     strong' = t('state:')
-    = @sprint.state
+    = opened_or_closed(@sprint.state)
   p class="sprint_show show"
     strong' = t('clients:')
     - @sprint.clients.each do |client|
       = client.name
       br
+  p class="sprint_show show"
+    strong' = t('sprint_time:')
+    = @sprint.work_hours
 
-.sprint_link
-  = link_to t(:edit), edit_sprint_path(@sprint)
+- if @sprint.state
+  .sprint_link
+    = link_to t(:edit), edit_sprint_path(@sprint)
 .sprint_link
   = link_to t(:back), sprints_path

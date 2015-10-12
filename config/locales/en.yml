@@ -32,4 +32,6 @@ en:
   set_sprint:
    sprint_not_found: "Spint not found"
 
- open_sprint_exist: "Open sprint exist"
+ can_not_be_updated: "can not be updated"
+
+ close_sprint: "Close sprint"
