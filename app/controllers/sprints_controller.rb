@@ -1,5 +1,5 @@
 class SprintsController < ApplicationController
-  before_action :set_sprint, only: [:show, :edit, :update, :destroy]
+  before_action :set_sprint, only: [:show, :edit, :update, :destroy, :close]
   before_action :all_clients, only: [:new, :edit, :create, :update]
   before_filter :collect_selected_clients, only: [:create, :edit, :update]
 
@@ -32,6 +32,12 @@ class SprintsController < ApplicationController
     return redirect_to sprints_url if @sprint.destroy
   end
 
+  def close
+    if @sprint.update!(state: params[:state])
+      redirect_to sprint_url, notice: t(:sprint_was_closed)
+    end
+  end
+
   private
 
   def set_sprint
@@ -41,7 +47,7 @@ class SprintsController < ApplicationController
   end
 
   def sprint_params
-   params.require(:sprint).permit(:name, :state, :work_hours, client_ids:[])
+    params.require(:sprint).permit(:name, :state, :work_hours, client_ids:[])
   end
 
   def collect_selected_clients
