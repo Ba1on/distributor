@@ -3,7 +3,7 @@ class SessionController < ApplicationController
 
   def create
     user = User.where(name: params[:name]).first
-    if user and user.authenticate(params[:password])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to issues_url
     else

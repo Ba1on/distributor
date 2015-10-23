@@ -33,7 +33,7 @@ class SprintsController < ApplicationController
   end
 
   def close
-    if @sprint.update!(state: params[:state])
+    if @sprint.update(state: params[:state])
       redirect_to sprint_url, notice: t(:sprint_was_closed)
     end
   end
@@ -42,12 +42,12 @@ class SprintsController < ApplicationController
 
   def set_sprint
     @sprint = Sprint.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to sprint_url, notice: t('.sprint_not_found')
+  rescue ActiveRecord::RecordNotFound
+    redirect_to sprint_url, notice: t('.sprint_not_found')
   end
 
   def sprint_params
-    params.require(:sprint).permit(:name, :state, :work_hours, client_ids:[])
+    params.require(:sprint).permit(:name, :state, :work_hours, client_ids: [])
   end
 
   def collect_selected_clients

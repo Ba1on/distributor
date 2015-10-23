@@ -7,23 +7,25 @@ class IssuesController < ApplicationController
   end
 
   def update
-    if @issue = Issue.find(params[:id])
-      # подозреваю, что так не стоит делать. зато работает)
-      @issue.update(sprint_id: params[:sprint_id])
-      redirect_to issues_path
+    begin
+      @issue = Issue.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
     end
+    @issue.update(sprint_id: params[:sprint_id])
+    redirect_to issues_path
   end
 
   private
 
   def current_sprint
-    @sprint = Sprint.where(state: true).first!
-    rescue Exception => e
-      redirect_to sprints_path, notice: t('.opened_sprint_not_found')
+    @sprint = Sprint.where(state: true).first
+    unless @sprint
+      flash[:notice] = t('.opened_sprint_not_found')
+      redirect_to sprints_path
+    end
   end
 
   def estimated_hours_to_sprint
-    Issue.where(sprint_id: @sprint.id).map{|x| x.estimated_hours}.sum
+    Issue.where(sprint_id: @sprint.id).sum(:estimated_hours)
   end
-
 end
