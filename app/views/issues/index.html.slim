@@ -7,30 +7,63 @@ p class="sprints_title"
 .col-xs-6
   .issues_c
     - @issues.each do |issue|
-      div class="one_issue" draggable="true"
-        p
-          =' t('issue_#')
-          = issue.id
-        p
-          =' t('estimated_hours:')
-          = issue.estimated_hours
-        p
-          =' t('hours:')
-          = issue.hours
-        p
-          =' t('status:')
-          = issue.status
-        p
-          =' t('subject:')
-          = issue.subject
+      - unless issue.sprint_id && @sprint.id
+        div class="one_issue" draggable="true"
+          p
+            => t('issue_#')
+            = issue.id
+          p
+            => t('estimated_hours:')
+            = issue.estimated_hours
+          p
+            => t('hours:')
+            = issue.hours
+          p
+            => t('status:')
+            = issue.status
+          p
+            => t('subject:')
+            = issue.subject
+          = button_to I18n.t(:add_to_sprint), issue_path(issue, sprint_id: @sprint.id), method: :patch
 
 .col-xs-6
   .issues_c
     p
-     =' t('sprint_name:')
-     = @sprint.name
+      => t('sprint_name:')
+      = @sprint.name
+    hr
+    p
+      => t('sprint_hours:')
+      = @sprint.work_hours
+    hr
+      => t('common_estimeted_time:')
+      = @sprint.estimated_hours_to_sprint
+    hr
+      => t('clients:')
     - @sprint.clients.each do |client|
       = client.name
       br
+    hr
+    - @issues.each do |issue|
+      - if issue.sprint_id == @sprint.id
+        div class="one_issue" draggable="true"
+          p
+            => t('issue_#')
+            = issue.id
+          p
+            => t('estimated_hours:')
+            = issue.estimated_hours
+          p
+            => t('hours:')
+            = issue.hours
+          p
+            => t('status:')
+            = issue.status
+          p
+            => t('subject:')
+            = issue.subject
+          = button_to I18n.t(:remove_from_sprint), issue_path(issue), method: :patch
+    .close_sprint
+      = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
   .edit_spint
     = link_to t(:edit_sprints), sprints_path

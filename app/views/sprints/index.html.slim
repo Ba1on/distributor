@@ -21,6 +21,11 @@ table class="sprints_list"
           = opened_or_closed(sprint.state)
         td class="total_time"
           = sprint.work_hours
+        td
+          - sprint.issues.each do |issue|
+            => t('issue_#')
+            = issue.id
+            br
 
 br
 
