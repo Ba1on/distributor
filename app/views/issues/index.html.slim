@@ -37,7 +37,7 @@ p class="sprints_title"
       = @sprint.work_hours
     hr
       => t('common_estimeted_time:')
-      = @est_time
+      = @sprint.estimated_hours_to_sprint
     hr
       => t('clients:')
     - @sprint.clients.each do |client|
@@ -64,6 +64,6 @@ p class="sprints_title"
             = issue.subject
           = button_to I18n.t(:remove_from_sprint), issue_path(issue), method: :patch
     .close_sprint
-      = button_to I18n.t(:close_sprint), close_sprint_path(@sprint, state: false), method: :patch
+      = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
   .edit_spint
     = link_to t(:edit_sprints), sprints_path

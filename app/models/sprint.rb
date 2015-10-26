@@ -18,4 +18,8 @@ class Sprint < ActiveRecord::Base
     opened = Sprint.where(state: true).any?
     errors.add(:sprint_id, I18n.t(:this_sprint_already_closed)) unless opened
   end
+
+  def estimated_hours_to_sprint
+    issues.sum(:estimated_hours)
+  end
 end

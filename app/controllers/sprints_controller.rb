@@ -33,9 +33,8 @@ class SprintsController < ApplicationController
   end
 
   def close
-    if @sprint.update(state: params[:state])
-      redirect_to sprint_url, notice: t(:sprint_was_closed)
-    end
+    @sprint.update(state: false)? flash[:notice] = t(:sprint_was_closed) : flash[:notice] = t(:sprint_cannot_close)
+    redirect_to sprint_url
   end
 
   private
