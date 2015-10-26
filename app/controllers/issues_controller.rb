@@ -7,12 +7,10 @@ class IssuesController < ApplicationController
 
   def update
     @issue = Issue.where(id: params[:id]).first
-    if @issue
+    flash[:notice] = t('.issue_is_not_found') unless @issue
+    flash[:notice] = t('.issue_can_not_be_updated') unless
       @issue.update_attributes(sprint_id: params[:sprint_id])
-      redirect_to issues_path
-    else
-      redirect_to issues_path, flash[:notice] = t('.issue_is_not_found')
-    end
+    redirect_to issues_path
   end
 
   private
