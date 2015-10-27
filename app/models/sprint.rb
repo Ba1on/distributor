@@ -23,10 +23,4 @@ class Sprint < ActiveRecord::Base
   def estimated_hours_to_sprint
     issues.sum(:estimated_hours)
   end
-
-  def sum_est_hours
-    opened = Sprint.where(state: true).first
-    errors.add(:sprint_id, I18n.t(:too_many_hours)) if
-      opened.estimated_hours_to_sprint > opened.work_hours
-  end
 end

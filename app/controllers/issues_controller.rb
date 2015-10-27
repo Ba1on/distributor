@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   before_filter :current_sprint
-  before_filter :that_issue, only: [:update, :add_issue, :remove_issue]
+  before_filter :that_issue, only: :update
 
   def index
     @issues = Issue.all
