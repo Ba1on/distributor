@@ -1,4 +1,9 @@
-p class="sprints_title" = t('sprints')
+- if notice
+  p id="notice"
+    = notice
+
+p class="sprints_title"
+  = t('sprints')
 
 table class="sprints_list"
   tr class="hat"
