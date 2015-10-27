@@ -6,6 +6,7 @@ class Sprint < ActiveRecord::Base
   validates :clients, presence: true
   validate :all_sprints_closed, on: :update
   validate :open_sprint
+  validates :work_hours, numericality: { greater_than_or_equal_to: :estimated_hours_to_sprint }, on: :update
   accepts_nested_attributes_for :clients
 
   def open_sprint

@@ -11,14 +11,13 @@ Distributor::Application.routes.draw do
   get 'session/create'
   get 'session/destroy'
 
-
   resources :issues
+
   resources :sprints do
     patch 'close', on: :member
   end
 
   root 'issues#index'
-
 
   namespace :api do
     resources :event, only: [] do
@@ -27,5 +26,4 @@ Distributor::Application.routes.draw do
       end
     end
   end
-
 end
