@@ -31,7 +31,10 @@ en:
  sprint:
   set_sprint:
    sprint_not_found: "Spint not found"
+  close:
+   sprint_was_closed: "Sprint was closed"
 
+ sprint_cannot_close: "Sprint can not be closed"
  can_not_be_updated: "can not be updated"
  close_sprint: "Close sprint"
  add_to_sprint: "Add to sprint"
@@ -45,4 +48,5 @@ en:
 
  remove_from_sprint: "Remove from sprint"
  this_sprint_already_closed: ": This sprint already closed"
+ too_many_hours: "Too many hours"
 

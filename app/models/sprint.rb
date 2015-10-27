@@ -6,6 +6,7 @@ class Sprint < ActiveRecord::Base
   validates :clients, presence: true
   validate :all_sprints_closed, on: :update
   validate :open_sprint
+  validates :work_hours, numericality: {greater_than_or_equal_to: :estimated_hours_to_sprint}, on: :update
   accepts_nested_attributes_for :clients
 
   def open_sprint
@@ -21,5 +22,11 @@ class Sprint < ActiveRecord::Base
 
   def estimated_hours_to_sprint
     issues.sum(:estimated_hours)
+  end
+
+  def sum_est_hours
+    opened = Sprint.where(state: true).first
+    errors.add(:sprint_id, I18n.t(:too_many_hours)) if
+      opened.estimated_hours_to_sprint > opened.work_hours
   end
 end
