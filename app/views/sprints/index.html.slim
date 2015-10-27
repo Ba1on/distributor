@@ -1,6 +1,18 @@
 p class="sprints_title" = t('sprints')
 
 table class="sprints_list"
+  tr class="hat"
+    td
+      = t('name')
+    td
+    td
+      = t('clients')
+    td
+      = t('status')
+    td
+      = t('hours')
+    td
+      = t('issues')
   - @sprints.each do |sprint|
       tr
         td class="list_description"
