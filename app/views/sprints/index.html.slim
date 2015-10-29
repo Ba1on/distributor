@@ -1,12 +1,12 @@
 - if notice
-  p id="notice"
+  p#notice
     = notice
 
-p class="sprints_title"
+p.sprints_title
   = t('sprints')
 
-table class="sprints_list"
-  tr class="hat"
+table.sprints_list
+  tr.hat
     td
       = t('name')
     td
@@ -20,23 +20,23 @@ table class="sprints_list"
       = t('all_issues')
   - @sprints.each do |sprint|
       tr
-        td class="list_description"
+        td.list_description
           dl
             dt = sprint.name
-        td class="list_actions"
+        td.list_actions
           = link_to t(:show), sprint
           br
           - if sprint.state
             = link_to t(:edit), edit_sprint_path(sprint)
           br
           = link_to t(:destroy), sprint, method: :delete, data: { confirm: 'Are you sure?' }
-        td class="list_clients"
+        td.list_clients
           - sprint.clients.each do |client|
             = client.name
             br
         td
           = opened_or_closed(sprint.state)
-        td class="total_time"
+        td.total_time
           = sprint.work_hours
         td
           - sprint.issues.each do |issue|

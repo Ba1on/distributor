@@ -1,15 +1,15 @@
 - if notice
-  p id="notice"
+  p#notice
     = notice
 
-p class="sprints_title"
+p.sprints_title
   = t('issue')
 
 .col-xs-6
   .issues_c
     - @issues.each do |issue|
       - unless issue.sprint_id && @sprint.id
-        div class="one_issue" draggable="true"
+        .one_issue
           p
             => t('issue_#')
             = issue.id
@@ -54,7 +54,7 @@ p class="sprints_title"
     hr
     - @issues.each do |issue|
       - if issue.sprint_id == @sprint.id
-        div class="one_issue" draggable="true"
+        .one_issue
           p
             => t('issue_#')
             = issue.id
@@ -76,5 +76,3 @@ p class="sprints_title"
       = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
   .edit_spint
     = link_to t(:edit_sprints), sprints_path
-
-
