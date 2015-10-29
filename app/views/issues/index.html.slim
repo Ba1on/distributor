@@ -36,6 +36,13 @@ p class="sprints_title"
     p
       => t('sprint_hours:')
       = @sprint.work_hours
+    .row
+      .progress
+        .progress-bar.progress-bar-striped style=progressbar_percent(@sprint)
+    .stats
+      = @sprint.hours_to_sprint.to_i
+      |/
+      = @sprint.work_hours
     hr
       => t('common_estimeted_time:')
       = @sprint.estimated_hours_to_sprint
@@ -68,3 +75,5 @@ p class="sprints_title"
       = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
   .edit_spint
     = link_to t(:edit_sprints), sprints_path
+
+
