@@ -7,4 +7,8 @@ class Issue < ActiveRecord::Base
     errors.add(:issue_id, I18n.t(:too_many_hours)) if (opened.nil? || opened.estimated_hours_to_sprint +
       estimated_hours > opened.work_hours) && sprint.present?
   end
+
+  def process_in_percents
+    ((hours / estimated_hours) * 100).to_i
+  end
 end

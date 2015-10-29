@@ -3,6 +3,7 @@ class IssuesController < ApplicationController
 
   def index
     @issues = Issue.all
+    @issue_url = Rails.configuration.issue_url
   end
 
   def update

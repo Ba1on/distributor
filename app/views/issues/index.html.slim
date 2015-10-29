@@ -9,22 +9,23 @@ p.sprints_title
   .issues_c
     - @issues.each do |issue|
       - unless issue.sprint_id && @sprint.id
-        .one_issue
+        div[class="one_issue #{issue.status}"]
           p
             => t('issue_#')
             = issue.id
           p
-            => t('estimated_hours:')
-            = issue.estimated_hours
-          p
-            => t('hours:')
-            = issue.hours
+            => t('subject:')
+            = link_to issue.subject, @issue_url + issue.id.to_s
           p
             => t('status:')
             = issue.status
-          p
-            => t('subject:')
-            = issue.subject
+          .row
+            .progress
+              .progress-bar.progress-bar-striped style=progressbar_percent(issue)
+                .stats
+                  = issue.hours.to_i
+                  |/
+                  = issue.estimated_hours.to_i
           = button_to I18n.t(:add_to_sprint), issue_path(issue, sprint_id: @sprint.id), method: :patch
 
 .col-xs-6
@@ -54,22 +55,23 @@ p.sprints_title
     hr
     - @issues.each do |issue|
       - if issue.sprint_id == @sprint.id
-        .one_issue
+        div[class="one_issue #{issue.status}"]
           p
             => t('issue_#')
             = issue.id
           p
-            => t('estimated_hours:')
-            = issue.estimated_hours
-          p
-            => t('hours:')
-            = issue.hours
+            => t('subject:')
+            = link_to issue.subject, @issue_url + issue.id.to_s
           p
             => t('status:')
             = issue.status
-          p
-            => t('subject:')
-            = issue.subject
+          .row
+            .progress
+              .progress-bar.progress-bar-striped style=progressbar_percent(issue)
+                .stats
+                  = issue.hours.to_i
+                  |/
+                  = issue.estimated_hours.to_i
           .remove
             = link_to I18n.t(:x), issue_path(issue), method: :patch
     .close_sprint
