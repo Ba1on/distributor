@@ -23,4 +23,12 @@ class Sprint < ActiveRecord::Base
   def estimated_hours_to_sprint
     issues.sum(:estimated_hours)
   end
+
+  def hours_to_sprint
+    issues.sum(:hours)
+  end
+
+  def process_in_percents
+    ((hours_to_sprint / work_hours) * 100).to_i
+  end
 end

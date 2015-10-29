@@ -10,6 +10,6 @@ html
       .logout
         - if session[:user_id]
           = button_to :Logout, logout_path, method: :delete, class: 'out'
-    div class="container" id="wrapper"
+    .container#wrapper
       = yield
-    footer class="footer"
+    footer.footer

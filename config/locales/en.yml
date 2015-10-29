@@ -41,7 +41,7 @@ en:
    issue_is_not_found: "Issue is not found"
    issue_can_not_be_updated: "Sprint can not be updated"
 
- remove_from_sprint: "Remove from sprint"
+ x: "×"
  this_sprint_already_closed: ": This sprint already closed"
  too_many_hours: "Too many hours"
  sprint_cannot_close: "Sprint can not be closed"

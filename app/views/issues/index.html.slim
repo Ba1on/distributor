@@ -1,15 +1,15 @@
 - if notice
-  p id="notice"
+  p#notice
     = notice
 
-p class="sprints_title"
+p.sprints_title
   = t('issue')
 
 .col-xs-6
   .issues_c
     - @issues.each do |issue|
       - unless issue.sprint_id && @sprint.id
-        div class="one_issue" draggable="true"
+        .one_issue
           p
             => t('issue_#')
             = issue.id
@@ -36,6 +36,13 @@ p class="sprints_title"
     p
       => t('sprint_hours:')
       = @sprint.work_hours
+    .row
+      .progress
+        .progress-bar.progress-bar-striped style=progressbar_percent(@sprint)
+          .stats
+            = @sprint.hours_to_sprint.to_i
+            |/
+            = @sprint.work_hours
     hr
       => t('common_estimeted_time:')
       = @sprint.estimated_hours_to_sprint
@@ -47,7 +54,7 @@ p class="sprints_title"
     hr
     - @issues.each do |issue|
       - if issue.sprint_id == @sprint.id
-        div class="one_issue" draggable="true"
+        .one_issue
           p
             => t('issue_#')
             = issue.id
@@ -63,7 +70,8 @@ p class="sprints_title"
           p
             => t('subject:')
             = issue.subject
-          = button_to I18n.t(:remove_from_sprint), issue_path(issue), method: :patch
+          .remove
+            = link_to I18n.t(:x), issue_path(issue), method: :patch
     .close_sprint
       = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
   .edit_spint

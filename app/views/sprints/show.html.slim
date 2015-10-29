@@ -1,18 +1,20 @@
-p id="notice" = notice
+- if notice
+  p#notice
+    = notice
 
 .sprints_list
-  p class="show"
+  p.show
     strong' = t('name:')
     = @sprint.name
-  p class="sprint_show show"
+  p.sprint_show.show
     strong' = t('state:')
     = opened_or_closed(@sprint.state)
-  p class="sprint_show show"
+  p.sprint_show.show
     strong' = t('clients:')
     - @sprint.clients.each do |client|
       = client.name
       br
-  p class="sprint_show show"
+  p.sprint_show.show
     strong' = t('sprint_time:')
     = @sprint.work_hours
 
