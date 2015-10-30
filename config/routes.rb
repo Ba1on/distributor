@@ -11,6 +11,8 @@ Distributor::Application.routes.draw do
   get 'session/create'
   get 'session/destroy'
 
+  post 'clients/create'
+
   resources :issues
 
   resources :sprints do
