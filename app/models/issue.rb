@@ -1,7 +1,7 @@
 class Issue < ActiveRecord::Base
   belongs_to :sprint
-  belongs_to :client, foreign_key: :redmine_id,
-                      primary_key: :client_id
+  belongs_to :client, foreign_key: :redmine_user_id,
+                      primary_key: :redmine_id
   validate :issue_hours, on: :update
 
   def issue_hours

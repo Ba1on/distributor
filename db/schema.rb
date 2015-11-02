@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20151030133830) do
     t.integer  "sprint_id",       limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "client_id",       limit: 4
+    t.integer  "redmine_user_id", limit: 4
   end
 
   create_table "sprint_clients", force: :cascade do |t|
