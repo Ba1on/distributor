@@ -19,7 +19,7 @@ table.sprints_list
     td
       = t('all_issues')
   - @sprints.each do |sprint|
-      tr
+      tr[class="#{sprint.state}"]
         td.list_description
           dl
             dt = sprint.name
