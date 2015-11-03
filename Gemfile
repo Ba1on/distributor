@@ -51,3 +51,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'jquery-ui-rails'
 gem 'slim-rails'
 gem 'app'
+
+gem "rails_12factor", group: :production
+
+ruby "2.0.0"
