@@ -8,7 +8,8 @@ class Api::EventController < ApiController
     @issue.assign_attributes(estimated_hours: params[:estimated_hours],
                              hours: params[:hours],
                              status: params[:status],
-                             subject: params[:issue_subject])
+                             subject: params[:issue_subject],
+                             redmine_user_id: params[:redmine_id])
 
     return ActiveRecord::RecordNotSaved unless @issue.save
   end

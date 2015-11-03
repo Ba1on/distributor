@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008113620) do
+ActiveRecord::Schema.define(version: 20151030133830) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "redmine_id", limit: 4
   end
 
   create_table "issues", force: :cascade do |t|
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20151008113620) do
     t.integer  "sprint_id",       limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "redmine_user_id", limit: 4
   end
 
   create_table "sprint_clients", force: :cascade do |t|

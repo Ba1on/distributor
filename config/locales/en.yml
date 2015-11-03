@@ -32,7 +32,8 @@ en:
   set_sprint:
    sprint_not_found: "Opened sprint not found"
   close:
-   sprint_was_closed: "Sprint was closed"
+
+ sprint_was_closed: "Sprint was closed"
 
  issues:
   current_sprint:
