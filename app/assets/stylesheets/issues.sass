@@ -3,22 +3,39 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .issues_c
   font-family: serif
-  background: #FFFFE0
+  background: #E0FFFF
   min-height: 200px
   margin-top: 15px
   border-radius: 15px
   padding: 20px
 
   hr
-    border-top: 1px solid #B8860B
+    border-top: 1px solid #7A8B8B
 
 .one_issue
   background: #FFE4B5
   min-height: 30px
   margin-top: 10px
   border-radius: 15px
-  padding: 5px
+  padding: 10px
   z-index: 5
+
+  .remove
+    height: 2em
+    width: 2em
+    background: #E0FFFF
+    border-radius: 40%
+    padding: 5px
+    float: right
+    margin-top: -9em
+    border: 1px inset #7A8B8B
+    box-shadow: 0 0 10px #7A8B8B
+    text-align: center
+    font-size: 1em
+
+  .button_to
+    font-size: 1em
+
 
 .logout
   .out
@@ -32,10 +49,10 @@
 .edit_spint
   font-family: serif
   min-height: 10px
-  background-color: #FFFFE0
+  background-color: #E0FFFF
   border-radius: 5px
-  box-shadow: 0 0 10px #B8860B
-  border: 1px outset #B8860B
+  box-shadow: 0 0 10px #7A8B8B
+  border: 1px outset #7A8B8B
   margin: 25px
   padding: 5px
   text-align: center
@@ -45,7 +62,6 @@
 
 .progress-bar
   height: 15px
-  background-image: url(progress-animation.gif) !important
 
 .progress
   margin: 0 20px
@@ -56,15 +72,24 @@
     color: black
     position: absolute
 
-.remove
-  height: 2em
-  width: 2em
-  background: #FFFFE0
-  border-radius: 40%
-  padding: 5px
-  float: right
-  margin-top: -10em
-  border: 1px inset #FFA54F
-  box-shadow: 0 0 10px #B8860B
-  text-align: center
+.translation_missing
+  font-weight: bold
+
+.New
+  background: #C1CDC1
+
+.Progress
+  background: #9FB6CD
+
+.Resolved
+  background: #EEEED1
+
+.Feedback
+  background: #FFF68F
+
+.Closed
+  background: #B5B5B5
+
+.Rejected
+  background: #8B7B8B
 
