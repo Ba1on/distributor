@@ -2,13 +2,13 @@
 # Examples for PostgreSQL, SQLite3 and SQL Server can be found at the end.
 # Line indentation must be 2 spaces (no tabs).
 
-production:
-  adapter: mysql2
-  database: distributor_production
-  host: localhost
-  username: root
-  password: ""
-  encoding: utf8
+# production:
+#   adapter: mysql2
+#   database: distributor_production
+#   host: localhost
+#   username: root
+#   password: ""
+#   encoding: utf8
 
 development:
   adapter: mysql2
