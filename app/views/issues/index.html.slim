@@ -83,8 +83,7 @@ p.sprints_title
             .remove
               = link_to I18n.t(:x), issue_path(issue), method: :patch
       .close_sprint
-        = button_to I18n.t(:start_sprint)
-        = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
+        = button_to I18n.t(:start_sprint), start_sprint_path(@sprint), method: :patch
         = button_to I18n.t(:show_sprint), sprint_path(@sprint), method: :get
   .edit_spint
     = link_to t(:edit_sprints), sprints_path

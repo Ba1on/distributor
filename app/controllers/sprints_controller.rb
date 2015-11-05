@@ -1,5 +1,5 @@
 class SprintsController < ApplicationController
-  before_action :set_sprint, only: [:show, :edit, :update, :destroy, :close]
+  before_action :set_sprint, only: [:show, :edit, :update, :destroy, :close, :start]
   before_action :all_clients, only: [:new, :edit, :create, :update]
   before_filter :collect_selected_clients, only: [:create, :edit, :update]
 
@@ -38,7 +38,12 @@ class SprintsController < ApplicationController
 
   def close
     @sprint.update(state: 0)? flash[:notice] = t(:sprint_was_closed) : flash[:notice] = t(:sprint_cannot_close)
-    redirect_to issues_path
+    redirect_to sprints_path
+  end
+
+  def start
+    @sprint.update(state: 2)? flash[:notice] = t(:sprint_started) : flash[:notice] = t(:sprint_can_not_start)
+    redirect_to sprint_path(@sprint)
   end
 
   private

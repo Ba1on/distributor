@@ -10,7 +10,7 @@ class Sprint < ActiveRecord::Base
   accepts_nested_attributes_for :clients
 
   def open_sprint
-    opened = Sprint.where(state: 1).first
+    opened = Sprint.where(state: 1).first || Sprint.where(state: 2).first
     errors.add(:sprint_id, I18n.t(:can_not_be_updated)) if
                 opened && (id != opened.id)
   end

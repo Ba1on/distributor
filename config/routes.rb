@@ -13,6 +13,7 @@ Distributor::Application.routes.draw do
 
   resources :sprints do
     patch 'close', on: :member
+    patch 'start', on: :member
   end
 
   root 'issues#index'

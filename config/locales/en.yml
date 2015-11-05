@@ -31,7 +31,6 @@ en:
  sprint:
   set_sprint:
    sprint_not_found: "Opened sprint not found"
-  close:
 
  sprint_was_closed: "Sprint was closed"
 
@@ -47,7 +46,9 @@ en:
  too_many_hours: "Too many hours"
  sprint_cannot_close: "Sprint can not be closed"
  can_not_be_updated: "can not be updated"
- close_sprint: "Close sprint"
+ close_sprint: "Закрой меня!"
  add_to_sprint: "Add to sprint"
  show_sprint: "Show sprint"
  start_sprint: "Start sprint"
+ sprint_started: "Sprint started"
+ sprint_can_not_start: "Sprint can not start"

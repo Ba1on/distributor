@@ -51,6 +51,8 @@
                     = issue.hours.to_i
                     |/
                     = issue.estimated_hours.to_i
+  - if @sprint.state == 2
+    = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
 
 .links
   - if @sprint.state
