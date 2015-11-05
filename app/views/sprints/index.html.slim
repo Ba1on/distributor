@@ -19,14 +19,14 @@ table.sprints_list
     td
       = t('all_issues')
   - @sprints.each do |sprint|
-      tr[class="#{sprint.state}"]
+      tr[class="state#{sprint.state}"]
         td.list_description
           dl
             dt = sprint.name
         td.list_actions
           = link_to t(:show), sprint
           br
-          - if sprint.state
+          - if sprint.state == 1
             = link_to t(:edit), edit_sprint_path(sprint)
           br
           = link_to t(:destroy), sprint, method: :delete, data: { confirm: 'Are you sure?' }
@@ -35,7 +35,7 @@ table.sprints_list
             = client.name
             br
         td
-          = opened_or_closed(sprint.state)
+          = sprint_state(sprint.state)
         td.total_time
           = sprint.work_hours
         td
@@ -46,7 +46,7 @@ table.sprints_list
 
 br
 
-- unless @sprints.exists?(state: true)
+- unless @sprints.exists?(state: 1)
   .sprint_link
     = link_to t(:new_sprint), new_sprint_path
 .edit_spint

@@ -7,6 +7,10 @@ class SprintsController < ApplicationController
     @sprints = Sprint.all
   end
 
+  def show
+    @issue_url = Rails.configuration.issue_url
+  end
+
   def new
     @sprint = Sprint.new
   end
@@ -33,7 +37,7 @@ class SprintsController < ApplicationController
   end
 
   def close
-    @sprint.update(state: false)? flash[:notice] = t(:sprint_was_closed) : flash[:notice] = t(:sprint_cannot_close)
+    @sprint.update(state: 0)? flash[:notice] = t(:sprint_was_closed) : flash[:notice] = t(:sprint_cannot_close)
     redirect_to issues_path
   end
 

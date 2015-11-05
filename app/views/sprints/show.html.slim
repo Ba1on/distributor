@@ -8,18 +8,55 @@
     = @sprint.name
   p.sprint_show.show
     strong' = t('state:')
-    = opened_or_closed(@sprint.state)
+    = sprint_state(@sprint.state)
   p.sprint_show.show
     strong' = t('clients:')
+    br
     - @sprint.clients.each do |client|
       = client.name
       br
   p.sprint_show.show
     strong' = t('sprint_time:')
-    = @sprint.work_hours
+  .show_bar
+    .row
+      .progress
+        .progress-bar.progress-bar-striped style=progressbar_percent(@sprint)
+          .stats
+            = @sprint.hours_to_sprint.to_i
+            |/
+            = @sprint.work_hours
+  p.sprint_show.show
+    strong' = t('issues:')
+    .issues_c
+      - @sprint.issues.each do |issue|
+        - if issue
+          div[class="one_issue #{issue.status}"]
+            p
+              => t('issue_#')
+              = issue.id
+            p
+              => t('subject:')
+              = link_to issue.subject, @issue_url + issue.id.to_s
+            p
+              => t('status:')
+              = issue.status
+            p
+              =>  t('assigned_to:')
+              - if issue.client
+                = issue.client.name
+            .row
+              .progress
+                .progress-bar.progress-bar-striped style=progressbar_percent(issue)
+                  .stats
+                    = issue.hours.to_i
+                    |/
+                    = issue.estimated_hours.to_i
 
-- if @sprint.state
+.links
+  - if @sprint.state
+    .sprint_link
+      = link_to t(:edit), edit_sprint_path(@sprint)
+    .sprint_link
+      = link_to t(:change_sprint), issues_path
   .sprint_link
-    = link_to t(:edit), edit_sprint_path(@sprint)
-.sprint_link
-  = link_to t(:back), sprints_path
+    = link_to t(:back), sprints_path

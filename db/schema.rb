@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030133830) do
+ActiveRecord::Schema.define(version: 20151105120727) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20151030133830) do
 
   create_table "sprints", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.boolean  "state",      limit: 1,   default: true
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.integer  "state",      limit: 4,   default: 1
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "work_hours", limit: 4
   end
 

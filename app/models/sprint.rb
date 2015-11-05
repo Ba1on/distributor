@@ -10,13 +10,13 @@ class Sprint < ActiveRecord::Base
   accepts_nested_attributes_for :clients
 
   def open_sprint
-    opened = Sprint.where(state: true).first
+    opened = Sprint.where(state: 1).first
     errors.add(:sprint_id, I18n.t(:can_not_be_updated)) if
                 opened && (id != opened.id)
   end
 
   def all_sprints_closed
-    opened = Sprint.where(state: true).any?
+    opened = Sprint.where(state: 1).any? || Sprint.where(state: 2).any?
     errors.add(:sprint_id, I18n.t(:this_sprint_already_closed)) unless opened
   end
 

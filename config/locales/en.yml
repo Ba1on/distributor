@@ -49,3 +49,5 @@ en:
  can_not_be_updated: "can not be updated"
  close_sprint: "Close sprint"
  add_to_sprint: "Add to sprint"
+ show_sprint: "Show sprint"
+ start_sprint: "Start sprint"

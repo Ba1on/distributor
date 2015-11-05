@@ -34,55 +34,57 @@ p.sprints_title
 
 .col-xs-6
   .issues_c
-    p
-      => t('sprint_name:')
-      = @sprint.name
-    hr
-    p
-      => t('sprint_hours:')
-      = @sprint.work_hours
-    .row
-      .progress
-        .progress-bar.progress-bar-striped style=progressbar_percent(@sprint)
-          .stats
-            = @sprint.hours_to_sprint.to_i
-            |/
-            = @sprint.work_hours
-    hr
-      => t('common_estimeted_time:')
-      = @sprint.estimated_hours_to_sprint
-    hr
-      => t('clients:')
-    - @sprint.clients.each do |client|
-      = client.name
-      br
-    hr
-    - @issues.each do |issue|
-      - if issue.sprint_id == @sprint.id
-        div[class="one_issue #{issue.status}"]
-          p
-            => t('issue_#')
-            = issue.id
-          p
-            => t('subject:')
-            = link_to issue.subject, @issue_url + issue.id.to_s
-          p
-            => t('status:')
-            = issue.status
-          p
-            =>  t('assigned_to:')
-            - if issue.client
-              = issue.client.name
-          .row
-            .progress
-              .progress-bar.progress-bar-striped style=progressbar_percent(issue)
-                .stats
-                  = issue.hours.to_i
-                  |/
-                  = issue.estimated_hours.to_i
-          .remove
-            = link_to I18n.t(:x), issue_path(issue), method: :patch
-    .close_sprint
-      = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
+   - if @sprint
+      p
+        => t('sprint_name:')
+        = @sprint.name
+      hr
+      p
+        => t('sprint_hours:')
+      .row
+        .progress
+          .progress-bar.progress-bar-striped style=progressbar_percent(@sprint)
+            .stats
+              = @sprint.hours_to_sprint.to_i
+              |/
+              = @sprint.work_hours
+      hr
+        => t('common_estimeted_time:')
+        = @sprint.estimated_hours_to_sprint
+      hr
+        => t('clients:')
+      - @sprint.clients.each do |client|
+        = client.name
+        br
+      hr
+      - @issues.each do |issue|
+        - if issue.sprint_id == @sprint.id
+          div[class="one_issue #{issue.status}"]
+            p
+              => t('issue_#')
+              = issue.id
+            p
+              => t('subject:')
+              = link_to issue.subject, @issue_url + issue.id.to_s
+            p
+              => t('status:')
+              = issue.status
+            p
+              =>  t('assigned_to:')
+              - if issue.client
+                = issue.client.name
+            .row
+              .progress
+                .progress-bar.progress-bar-striped style=progressbar_percent(issue)
+                  .stats
+                    = issue.hours.to_i
+                    |/
+                    = issue.estimated_hours.to_i
+            .remove
+              = link_to I18n.t(:x), issue_path(issue), method: :patch
+      .close_sprint
+        = button_to I18n.t(:start_sprint)
+        = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
+        = button_to I18n.t(:show_sprint), sprint_path(@sprint), method: :get
   .edit_spint
     = link_to t(:edit_sprints), sprints_path
