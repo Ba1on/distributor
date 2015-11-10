@@ -52,6 +52,8 @@ gem 'jquery-ui-rails'
 gem 'slim-rails'
 gem 'app'
 gem 'pg'
+gem 'chartkick'
+gem 'groupdate'
 
 gem "rails_12factor", group: :production
 

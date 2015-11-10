@@ -2,17 +2,25 @@ class Sprint < ActiveRecord::Base
   has_many :sprint_clients
   has_many :clients, through: :sprint_clients
   has_many :issues
+  has_many :events, through: :issues
   validates :name, uniqueness: true, presence: true
   validates :clients, presence: true
   validate :all_sprints_closed, on: :update
-  validate :open_sprint
+  #validate :open_sprint
+  #validate :start_sprint
   validates :work_hours, numericality: { greater_than_or_equal_to: :estimated_hours_to_sprint }, on: :update
   accepts_nested_attributes_for :clients
 
   def open_sprint
-    opened = Sprint.where(state: 1).first || Sprint.where(state: 2).first
+    opened = Sprint.where(state: 1).first
     errors.add(:sprint_id, I18n.t(:can_not_be_updated)) if
                 opened && (id != opened.id)
+  end
+
+  def start_sprint
+    started = Sprint.where(state: 2).first
+    errors.add(:sprint_id, I18n.t(:work_sprint_already_exists)) if
+                started && (state != 1)
   end
 
   def all_sprints_closed

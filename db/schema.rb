@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105120727) do
+ActiveRecord::Schema.define(version: 20151106124244) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "redmine_id", limit: 4
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.float    "hours",      limit: 24
+    t.integer  "client_id",  limit: 4
+    t.integer  "issue_id",   limit: 4
+    t.date     "hours_date"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "issues", force: :cascade do |t|
@@ -54,6 +63,7 @@ ActiveRecord::Schema.define(version: 20151105120727) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "work_hours", limit: 4
+    t.date     "start_time"
   end
 
   create_table "users", force: :cascade do |t|

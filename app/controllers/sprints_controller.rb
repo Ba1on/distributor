@@ -9,6 +9,7 @@ class SprintsController < ApplicationController
 
   def show
     @issue_url = Rails.configuration.issue_url
+    @events = @sprint.events
   end
 
   def new
@@ -42,8 +43,13 @@ class SprintsController < ApplicationController
   end
 
   def start
-    @sprint.update(state: 2)? flash[:notice] = t(:sprint_started) : flash[:notice] = t(:sprint_can_not_start)
-    redirect_to sprint_path(@sprint)
+    if @sprint.update_attributes(state: 2, start_time: Date.today)
+      flash[:notice] = t(:sprint_started)
+      redirect_to sprint_path(@sprint)
+    else
+      flash[:notice] = t(:sprint_can_not_start)
+      redirect_to issues_path
+    end
   end
 
   private

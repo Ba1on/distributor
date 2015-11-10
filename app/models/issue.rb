@@ -1,4 +1,5 @@
 class Issue < ActiveRecord::Base
+  has_many :events
   belongs_to :sprint
   belongs_to :client, foreign_key: :redmine_user_id,
                       primary_key: :redmine_id

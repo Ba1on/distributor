@@ -51,14 +51,17 @@
                     = issue.hours.to_i
                     |/
                     = issue.estimated_hours.to_i
+  p.sprint_show.show
+    = line_chart @events.group(:event_id).group_by_day(:hours_date).count
   - if @sprint.state == 2
-    = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
+    .close_me
+      = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
 
 .links
-  - if @sprint.state
+  - if @sprint.state == 1
     .sprint_link
       = link_to t(:edit), edit_sprint_path(@sprint)
-    .sprint_link
-      = link_to t(:change_sprint), issues_path
+  .sprint_link
+    = link_to t(:planing_open_sprint), issues_path
   .sprint_link
     = link_to t(:back), sprints_path

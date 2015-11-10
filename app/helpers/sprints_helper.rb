@@ -7,6 +7,8 @@ module SprintsHelper
       t(:closed)
     when 2
       t(:in_work)
+    when 3
+      t(:for_closing)
     else
       t(:something_went_wrong)
     end

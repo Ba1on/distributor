@@ -19,9 +19,9 @@ Distributor::Application.routes.draw do
   root 'issues#index'
 
   namespace :api do
-    resources :event, only: [] do
+    resources :dataredmine, only: [] do
       collection do
-        post '/recieve', to: "event#recieve"
+        post '/recieve', to: "dataredmine#recieve"
       end
     end
   end
