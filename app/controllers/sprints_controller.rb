@@ -1,4 +1,5 @@
 class SprintsController < ApplicationController
+  skip_before_filter :authorize, only: [:show, :index]
   before_action :set_sprint, only: [:show, :edit, :update, :destroy, :close, :start]
   before_action :all_clients, only: [:new, :edit, :create, :update]
   before_filter :collect_selected_clients, only: [:create, :edit, :update]

@@ -55,15 +55,16 @@
     - if @sprint.start_time
       = line_chart [{name: "work hours", data: @sprint.events.group(:hours_date).sum(:hours)},
                     {name: "norm", data: ({@sprint.start_time => 0, @sprint.start_time + 10 => @sprint.work_hours})}]
-  - if @sprint.state == 2
+  - if @sprint.state == 2 && session[:user_id]
     .close_me
       = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch
 
 .links
-  - if @sprint.state == 1
+  - if session[:user_id]
+    - if @sprint.state == 1
+      .sprint_link
+        = link_to t(:edit), edit_sprint_path(@sprint)
     .sprint_link
-      = link_to t(:edit), edit_sprint_path(@sprint)
-  .sprint_link
-    = link_to t(:planing_open_sprint), issues_path
+      = link_to t(:planing_open_sprint), issues_path
   .sprint_link
     = link_to t(:back), sprints_path

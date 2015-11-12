@@ -16,7 +16,7 @@ Distributor::Application.routes.draw do
     patch 'start', on: :member
   end
 
-  root 'issues#index'
+  root 'sprints#index'
 
   namespace :api do
     resources :dataredmine, only: [] do
