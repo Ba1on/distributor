@@ -16,4 +16,6 @@
 //= require jquery-ui/droppable
 //= require jquery_ujs
 //= require turbolinks
+//= require highcharts.js
+//= require chartkick
 //= require_tree .

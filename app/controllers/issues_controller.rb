@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_filter :current_sprint
+  before_filter :current_sprint, only: :index
 
   def index
     @issues = Issue.all
@@ -20,7 +20,7 @@ class IssuesController < ApplicationController
   private
 
   def current_sprint
-    @sprint = Sprint.where(state: true).first
+    @sprint = Sprint.where(state: 1).first
     return redirect_to sprints_path unless @sprint
   end
 end
