@@ -6,15 +6,34 @@ class IssuesController < ApplicationController
     @issue_url = Rails.configuration.issue_url
   end
 
+  # def update
+  #   @issue = Issue.where(id: params[:id]).first
+
+  #   respond_to do |format|
+  #     format.html # index.html.erb
+  #     format.json { render json: @activities }
+  #     if @issue
+  #       flash[:notice] = t('.issue_can_not_be_updated') unless
+  #@issue.update(sprint_id: params[:sprint_id])
+  #     else
+  #       flash[:notice] = t('.issue_is_not_found')
+  #     end
+  #   end
+  #   redirect_to issues_path
+  # end
+
   def update
     @issue = Issue.where(id: params[:id]).first
-    if @issue
-      flash[:notice] = t('.issue_can_not_be_updated') unless
-        @issue.update(sprint_id: params[:sprint_id])
-    else
-      flash[:notice] = t('.issue_is_not_found')
+
+    respond_to do |format|
+      if @issue.update(sprint_id: params[:sprint_id])
+        format.json { render json: @issue }
+      else
+        format.html { redirect_to issues_path, notice: t('.issue_can_not_be_updated') }
+        format.json
+      end
+      format.html { redirect_to issues_path }
     end
-    redirect_to issues_path
   end
 
   private

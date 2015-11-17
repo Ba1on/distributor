@@ -12,7 +12,7 @@ html
         - if session[:user_id]
           = button_to :Logout, logout_path, method: :delete, class: 'out'
         - else
-          = button_to :Login, login_path, method: :post, class: 'out'
+          = button_to :Login, login_path, class: 'out'
     .container#wrapper
       = yield
     .white_block

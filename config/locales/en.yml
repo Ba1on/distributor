@@ -51,5 +51,5 @@ en:
  show_sprint: "Show sprint"
  start_sprint: "Стартуем! Я сказала, стартуем!"
  sprint_started: "Sprint get started"
- sprint_can_not_start: "Work sprint already exists!"
+ sprint_can_not_start: "Sprint can not start!"
  work_sprint_already_exists: "Work sprint already exists!"

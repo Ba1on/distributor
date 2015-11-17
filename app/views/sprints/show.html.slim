@@ -53,8 +53,8 @@
                     = issue.estimated_hours.to_i
   p.sprint_show.show
     - if @sprint.start_time
-      = line_chart [{name: "work hours", data: @sprint.events.group(:hours_date).sum(:hours)},
-                    {name: "norm", data: ({@sprint.start_time => 0, @sprint.start_time + 10 => @sprint.work_hours})}]
+      = line_chart [{name: "work hours", data: @sprint.graph},
+                    {name: "norm", data: ({@sprint.start_time => @sprint.work_hours, @sprint.start_time + 10 => 0})}]
   - if @sprint.state == 2 && session[:user_id]
     .close_me
       = button_to I18n.t(:close_sprint), close_sprint_path(@sprint), method: :patch

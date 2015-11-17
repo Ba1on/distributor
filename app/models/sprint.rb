@@ -14,7 +14,7 @@ class Sprint < ActiveRecord::Base
   def open_sprint
     opened = Sprint.where(state: 1).first
     errors.add(:sprint_id, I18n.t(:can_not_be_updated)) if
-                opened && (id != opened.id)
+                opened && (state == 0)
   end
 
   def start_sprint
@@ -38,5 +38,13 @@ class Sprint < ActiveRecord::Base
 
   def process_in_percents
     ((hours_to_sprint / work_hours) * 100).to_i
+  end
+
+  def graph
+    shrinking_time = work_hours
+    mas = events.group(:hours_date).sum(:hours)
+    (start_time..Date.today).each { |date| mas[date] = 0 unless mas.key?(date) }
+    mas = Hash[mas.sort]
+    mas.update(mas) { |_key, value| shrinking_time -= value }
   end
 end
