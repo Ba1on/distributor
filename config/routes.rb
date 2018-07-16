@@ -1,6 +1,4 @@
 Distributor::Application.routes.draw do
-  get 'user' => 'users#index'
-
   controller :session do
     get 'login' => :new
     post 'login' => :create
